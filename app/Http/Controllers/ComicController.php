@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comic;
 use Illuminate\Http\Request;
+use App\Http\Requests\ComicRequest;
 
 class ComicController extends Controller
 {
@@ -25,7 +27,7 @@ class ComicController extends Controller
      */
     public function create()
     {
-        //
+        return view('comics.create');
     }
 
     /**
@@ -34,9 +36,15 @@ class ComicController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
-        //
+        $form_data = $request->all();
+        // dd($form_data);
+        $new_comic = new Comic();
+        $form_data['price']  = '$' . $form_data['price'];
+        $new_comic->fill($form_data);
+        $new_comic->save();
+        return redirect()->route('comics.show', $new_comic);
     }
 
     /**
@@ -58,7 +66,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -68,9 +76,11 @@ class ComicController extends Controller
      * @param  \App\Models\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(ComicRequest $request, Comic $comic)
     {
-        //
+        $form_data = $request->all();
+        $comic->update($form_data);
+        return view('comics.show', compact('comic'));
     }
 
     /**
@@ -81,6 +91,8 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index')->with('trashElement', "'$comic->title' è stato eliminato correttamente");
     }
 }
+
