@@ -1,7 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Guest\PageController;
+use App\Http\Controllers\Pagecontroller;
+use App\Http\Controllers\ComicController;
+use App\Http\Controllers\Guest\PageController as GuestPageController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,7 +17,8 @@ use App\Http\Controllers\Guest\PageController;
 */
 
 // Route Index
-Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/', [GuestPageController::class, 'index'])->name('home');
 
 // Route Comics (elenco fumetti)
 Route::resource('/comics', ComicController::class);
+

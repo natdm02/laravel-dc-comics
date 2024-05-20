@@ -95,4 +95,3 @@ class ComicController extends Controller
         return redirect()->route('comics.index')->with('trashElement', "'$comic->title' è stato eliminato correttamente");
     }
 }
-
