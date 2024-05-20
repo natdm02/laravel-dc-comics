@@ -8,7 +8,7 @@
     <!-- Styles -->
     @vite('resources/js/app.js')
 
-    <title>Template</title>
+    <title>laravek dc comics</title>
 </head>
 <body>
     @include('partials.header')

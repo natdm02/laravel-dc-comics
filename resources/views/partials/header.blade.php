@@ -1,6 +1,12 @@
-<header>
-    <h1>Header</h1>
+<header class="p-3 text-center">
+    <img class="my-4" src="/cd-comics.jpeg" alt="DC Logo">
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link {{ Route::currentRouteName() === 'home' ? 'active' : '' }} " href="{{ route('home') }}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{ Route::currentRouteName() === 'comics.index' ? 'active' : '' }}" href="{{ route('comics.index') }}">Elenco Fumetti</a>
+        </li>
+    </ul>
 
-    <a href="{{route('home')}}">Home</a>
-    <a href="{{route('nuova-pagina')}}">Nuova Pagina</a>
 </header>
