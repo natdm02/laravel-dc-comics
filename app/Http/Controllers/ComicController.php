@@ -33,12 +33,17 @@ class ComicController extends Controller
 
             'title' => 'required|max:255',
             'description' => 'required',
+            'thumb' => 'required|url',
             'price' => 'required|numeric',
+            'series' => 'required|string|max:255',
+            'sale_date' => 'required|date',
+            'type' => 'required|string|max:255',
 
         ]);
 
-        $comic = Comic::create($validatedData);
-        return redirect()->route('comics.index');
+        Comic::create($validatedData);
+
+        return redirect()->route('comics.index') -> with('success', 'fumetto aggiunto!');
     }
 
     /**
@@ -47,7 +52,7 @@ class ComicController extends Controller
     public function show(string $id)
     {
         $comic = Comic::findOrFail($id);
-    return view('comics.show', compact('comic'));
+        return view('comics.show', compact('comic'));
     }
 
     /**
@@ -55,7 +60,8 @@ class ComicController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+        return view('comics.edit', compact('comic'));
     }
 
     /**
