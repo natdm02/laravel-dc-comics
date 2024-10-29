@@ -1,30 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>create</title>
-</head>
-<body>
-    <h1>nuovo fumetto</h1>
+@extends('layouts.app')
+
+@section('content')
+    <h1>aggiungi un nuovo fumetto</h1>
 
     <form action="{{ route('comics.store') }}" method="POST">
-
         @csrf
-
-        <label for="title">titolo:</label>
-
-        <input type="text" name="title" required>
-
-        <label for="description">descrizione:</label>
-        <textarea name="description" required></textarea>
-
-        <label for="price">prezzo:</label>
-        <input type="text" name="price" required>
-
-        <button type="submit">salva</button>
+        <div>
+            <label for="title">titolo:</label>
+            <input type="text" name="title" required>
+        </div>
+        <div>
+            <label for="description">descrizione:</label>
+            <textarea name="description" required></textarea>
+        </div>
+        <div>
+            <label for="thumb">URL:</label>
+            <input type="text" name="thumb" required>
+        </div>
+        <div>
+            <label for="price">prezzo:</label>
+            <input type="text" name="price" required>
+        </div>
+        <div>
+            <label for="series">serie:</label>
+            <input type="text" name="series" required>
+        </div>
+        <div>
+            <label for="sale_date">data di vendita:</label>
+            <input type="date" name="sale_date" required>
+        </div>
+        <div>
+            <label for="type">tipo:</label>
+            <input type="text" name="type" required>
+        </div>
+        <button type="submit">aggiungi fumetto</button>
     </form>
-    <a href="{{ route('comics.index') }}">torna alla lista</a>
-</body>
-</html>
+
+    <a href="{{ route('comics.index') }}">Torna alla lista</a>
+@endsection
+
